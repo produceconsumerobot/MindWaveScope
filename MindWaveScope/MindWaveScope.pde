@@ -62,7 +62,20 @@ Beta2
 Gamma1
 Gamma2
 */
-String[] plotVars = {"Raw", "BlinkStrength", "Alpha2", "Attention", "Meditation", "SignalLevel"};
+
+String[] plotVars = {"Raw", "BlinkStrength", "Attention", "Beta1", "Meditation","Alpha2", "SignalLevel"};
+// yFactors sets the default y-axis scale for each plotVar
+// yFactors can also be adjusted using buttons in the display window
+float[] yFactors = {1f, 8f, 8f, 1/32f, 8f, 1/32f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
+
+/*
+// Plot / Record All Variables
+String[] plotVars = {"Raw", "BlinkStrength", "Attention", "Meditation", "Delta", "Theta", 
+"Alpha1", "Alpha2", "Beta1", "Beta2", "Gamma1", "Gamma2", "SignalLevel"};
+// yFactors sets the default y-axis scale for each plotVar
+// yFactors can also be adjusted using buttons in the display window
+float[] yFactors = {1f, 8f, 8f, 8f, 1/512f, 1/256f, 1/128f, 1/32f, 1/32f, 1/32f, 1/32f, 1/32f, 1f};
+*/
 
 // Duration of time shown in the window (assumes 512Hz sampling of MindWave)
 float timeWindow = 10f; // seconds
@@ -70,11 +83,9 @@ float timeWindow = 10f; // seconds
 // yOffsets sets the y-axis offset for each plotVar
 // offset the raw data (1st variable) by half the default scope resolution
 // to prevent negative values from extending into other windows
-int[] yOffsets = {512,1,1,1,1,1,1,1,1,1};
+int[] yOffsets = {512,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
-// yFactors sets the default y-axis scale for each plotVar
-// yFactors can also be adjusted using buttons in the display window
-float[] yFactors = {1f,8f,1/64f,1*8f,1*8f,8f,1f,1f,1f,1f,1f,1f,1f,1f,1f,1f,1f}; 
+ 
 
 // Directory and name of your saved MindSet data. Make sure you 
 // have write privileges to that location.
@@ -84,8 +95,8 @@ String[] fName = {saveDir, "MindWaveData", nf(year(),4), nf(month(),2), nf(day()
 String saveFileName = join(fName, '.');
 
 // Choose window dimensions in number of pixels
-int windowWidth = 1200; 
-int windowHeight = 800;
+int windowWidth = 1400; 
+int windowHeight = 825;
 /*******************************************/
 /**** END User Selected Setup Variables ****/
 
@@ -164,7 +175,7 @@ void setup() {
     controlP5.addButton((20+i)+"/2")
      .setLabel("/2")
      .setId(20+i)
-     .setPosition(yButH,posv[1]+70)
+     .setPosition(yButH+30,posv[1]+20)
      .setSize(20,20); 
     // old code
     //controlP5.addButton(i+"*2",1,dimv[0]+10,posv[1]+20,20,20).setId(i).setLabel("*2");  
@@ -225,7 +236,7 @@ void draw() {
     if (true) {
       // yfactor text
       fill(255);
-      text("y * " + yFactors[i], dim[0] + 10,pos[1] + 60); 
+      text("y * " + yFactors[i], dim[0] + 10,pos[1] + 55); 
     }
     
     // variable name text
